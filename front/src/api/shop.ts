@@ -2,7 +2,7 @@ import { request } from "@/utils/request";
 import type { Shop, ShopCategory, PageParams, PageResult } from "@/types";
 
 const BASE_URL = "/shop";
-const CATEGORY_URL = "/shop-category";
+const CATEGORY_URL = "/category";
 
 export const shopApi = {
   // 获取营业中的商家
@@ -68,21 +68,11 @@ export const shopApi = {
 export const shopCategoryApi = {
   // 获取所有商家分类
   getAllCategories(): Promise<ShopCategory[]> {
-    return request.get(`${CATEGORY_URL}/list`);
+    return request.get(`${CATEGORY_URL}/all`);
   },
 
   // 获取分类详情
   getCategoryById(id: number): Promise<ShopCategory> {
     return request.get(`${CATEGORY_URL}/${id}`);
-  },
-
-  // 按层级查询分类
-  getCategoriesByLevel(level: number): Promise<ShopCategory[]> {
-    return request.get(`${CATEGORY_URL}/level/${level}`);
-  },
-
-  // 获取子分类
-  getChildCategories(parentId: number): Promise<ShopCategory[]> {
-    return request.get(`${CATEGORY_URL}/parent/${parentId}`);
   },
 };

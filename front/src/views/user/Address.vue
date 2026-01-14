@@ -176,9 +176,17 @@ onMounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  max-width: 480px;
   padding: 16px;
   background-color: #fff;
   border-top: 1px solid #eee;
+
+  @media (min-width: 768px) {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
 
   .el-button {
     width: 100%;

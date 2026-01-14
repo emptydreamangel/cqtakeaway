@@ -1,6 +1,7 @@
 package com.blue.jitian.Entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,17 +18,20 @@ import lombok.extern.slf4j.Slf4j;
 public class ShopCategory {
     @TableId(type = IdType.AUTO)
     @TableField("category_id")
-    Integer category_id;
+    @JsonProperty("category_id")
+    Integer categoryId;
     
     @TableField("category_name")
-    String category_name;
+    @JsonProperty("category_name")
+    String categoryName;
     
     @TableField("icon")
     String icon;
     
     @TableField("sort_order")
-    Integer sort_order;  // 排序，数字越小越靠前
+    @JsonProperty("sort_order")
+    Integer sortOrder;
     
     @TableField("status")
-    Integer status;  // 0: 禁用, 1: 正常
+    Integer status;
 }

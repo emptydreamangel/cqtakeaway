@@ -1,6 +1,7 @@
 package com.blue.jitian.Entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +21,16 @@ import java.time.LocalDateTime;
 public class Shop {
     @TableId(type = IdType.AUTO)
     @TableField("shop_id")
-    Long shop_id;
+    @JsonProperty("shop_id")
+    Long shopId;
     
     @TableField("category_id")
-    Integer category_id;
+    @JsonProperty("category_id")
+    Integer categoryId;
     
     @TableField("shop_name")
-    String shop_name;
+    @JsonProperty("shop_name")
+    String shopName;
     
     @TableField("logo")
     String logo;
@@ -50,44 +54,53 @@ public class Shop {
     String address;
     
     @TableField("longitude")
-    BigDecimal longitude;  // 经度
+    BigDecimal longitude;
     
     @TableField("latitude")
-    BigDecimal latitude;   // 纬度
+    BigDecimal latitude;
     
     @TableField("phone")
     String phone;
     
     @TableField("business_hours")
-    String business_hours;  // 营业时间，JSON格式字符串
+    @JsonProperty("business_hours")
+    String businessHours;
     
     @TableField("delivery_time")
-    Integer delivery_time;  // 预计配送时间（分钟）
+    @JsonProperty("delivery_time")
+    Integer deliveryTime;
     
     @TableField("min_order_amount")
-    BigDecimal min_order_amount;  // 起送金额
+    @JsonProperty("min_order_amount")
+    BigDecimal minOrderAmount;
     
     @TableField("delivery_fee")
-    BigDecimal delivery_fee;  // 配送费
+    @JsonProperty("delivery_fee")
+    BigDecimal deliveryFee;
     
     @TableField("packing_fee")
-    BigDecimal packing_fee;  // 打包费
+    @JsonProperty("packing_fee")
+    BigDecimal packingFee;
     
     @TableField("rating")
-    BigDecimal rating;  // 评分
+    BigDecimal rating;
     
     @TableField("sales_count")
-    Integer sales_count;  // 销量
+    @JsonProperty("sales_count")
+    Integer salesCount;
     
     @TableField("status")
-    Integer status;  // 0: 休息中, 1: 营业中, 2: 打烊
+    Integer status;
     
     @TableField("is_auth")
-    Integer is_auth;  // 0: 未认证, 1: 已认证
+    @JsonProperty("is_auth")
+    Integer isAuth;
     
     @TableField(value = "created_at", fill = FieldFill.INSERT)
-    LocalDateTime created_at;
+    @JsonProperty("created_at")
+    LocalDateTime createdAt;
     
     @TableField(value = "updated_at", fill = FieldFill.UPDATE)
-    LocalDateTime updated_at;
+    @JsonProperty("updated_at")
+    LocalDateTime updatedAt;
 }

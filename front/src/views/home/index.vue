@@ -17,14 +17,14 @@
       <div class="category-grid">
         <div
           v-for="category in categories"
-          :key="category.id"
+          :key="category.category_id"
           class="category-item"
           @click="handleCategoryClick(category)"
         >
           <div class="category-icon">
             <el-icon><Food /></el-icon>
           </div>
-          <span class="category-name">{{ category.name }}</span>
+          <span class="category-name">{{ category.category_name }}</span>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ const goShopList = () => {
 
 // 点击分类
 const handleCategoryClick = (category: ShopCategory) => {
-  router.push(`/shop?categoryId=${category.id}`);
+  router.push(`/shop?categoryId=${category.category_id}`);
 };
 
 onMounted(() => {

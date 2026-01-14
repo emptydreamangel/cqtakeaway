@@ -1,10 +1,10 @@
 // 商家信息
 export interface Shop {
-  id: number;
-  name: string;
+  shop_id: number;
+  shop_name: string;
   logo?: string;
   banner?: string;
-  categoryId: number;
+  category_id: number;
   categoryName?: string;
   phone: string;
   province: string;
@@ -13,29 +13,27 @@ export interface Shop {
   address: string;
   longitude?: number;
   latitude?: number;
-  businessHours?: string;
+  business_hours?: string;
   description?: string;
   notice?: string;
-  minPrice: number; // 起送价
-  deliveryFee: number; // 配送费
-  deliveryTime?: number; // 配送时间(分钟)
+  min_order_amount: number; // 起送价
+  delivery_fee: number; // 配送费
+  delivery_time?: number; // 配送时间(分钟)
   rating: number; // 评分
-  monthlySales: number; // 月销量
+  sales_count: number; // 月销量
   status: number; // 0-休息中 1-营业中 2-已打烊
-  isAuthenticated: number; // 0-未认证 1-已认证
-  createTime?: string;
-  updateTime?: string;
+  is_auth: number; // 0-未认证 1-已认证
+  created_at?: string;
+  updated_at?: string;
 }
 
 // 商家分类
 export interface ShopCategory {
-  id: number;
-  name: string;
+  category_id: number;
+  category_name: string;
   icon?: string;
-  parentId: number;
-  level: number;
-  sort: number;
-  createTime?: string;
+  sort_order: number;
+  status: number;
 }
 
 // 商家图片

@@ -12,12 +12,12 @@ import org.springframework.util.StringUtils;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 @Service
 public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 根据分类ID查询商家
+     *
      * @param categoryId 分类ID
      * @return 商家列表
      */
@@ -27,6 +27,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 根据状态查询商家
+     *
      * @param status 状态
      * @return 商家列表
      */
@@ -36,6 +37,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 查询营业中的商家
+     *
      * @return 商家列表
      */
     public List<Shop> getBusinessShops() {
@@ -44,6 +46,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 根据名称模糊查询商家
+     *
      * @param shopName 商家名称
      * @return 商家列表
      */
@@ -56,6 +59,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 根据地区查询商家
+     *
      * @param province 省份
      * @param city 城市
      * @param district 区县
@@ -67,6 +71,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 根据位置范围查询商家
+     *
      * @param minLongitude 最小经度
      * @param maxLongitude 最大经度
      * @param minLatitude 最小纬度
@@ -74,12 +79,13 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
      * @return 商家列表
      */
     public List<Shop> getShopsByLocationRange(BigDecimal minLongitude, BigDecimal maxLongitude,
-                                               BigDecimal minLatitude, BigDecimal maxLatitude) {
+            BigDecimal minLatitude, BigDecimal maxLatitude) {
         return this.baseMapper.findByLocationRange(minLongitude, maxLongitude, minLatitude, maxLatitude);
     }
 
     /**
      * 添加商家
+     *
      * @param shop 商家对象
      * @return 是否成功
      */
@@ -89,27 +95,28 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
         if (shop.getRating() == null) {
             shop.setRating(new BigDecimal("5.00"));
         }
-        if (shop.getSales_count() == null) {
-            shop.setSales_count(0);
+        if (shop.getSalesCount() == null) {
+            shop.setSalesCount(0);
         }
         if (shop.getStatus() == null) {
             shop.setStatus(1);  // 默认营业中
         }
-        if (shop.getIs_auth() == null) {
-            shop.setIs_auth(0);  // 默认未认证
+        if (shop.getIsAuth() == null) {
+            shop.setIsAuth(0);  // 默认未认证
         }
-        
+
         return this.save(shop);
     }
 
     /**
      * 更新商家
+     *
      * @param shop 商家对象
      * @return 是否成功
      */
     @Transactional(rollbackFor = Exception.class)
     public boolean updateShop(Shop shop) {
-        if (shop.getShop_id() == null) {
+        if (shop.getShopId() == null) {
             return false;
         }
         return this.updateById(shop);
@@ -117,6 +124,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 更新商家状态
+     *
      * @param shopId 商家ID
      * @param status 状态
      * @return 是否成功
@@ -128,6 +136,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 设置为营业中
+     *
      * @param shopId 商家ID
      * @return 是否成功
      */
@@ -137,6 +146,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 设置为休息中
+     *
      * @param shopId 商家ID
      * @return 是否成功
      */
@@ -146,6 +156,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 设置为打烊
+     *
      * @param shopId 商家ID
      * @return 是否成功
      */
@@ -155,6 +166,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 更新商家认证状态
+     *
      * @param shopId 商家ID
      * @param isAuth 认证状态
      * @return 是否成功
@@ -166,6 +178,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 认证商家
+     *
      * @param shopId 商家ID
      * @return 是否成功
      */
@@ -175,6 +188,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 取消认证
+     *
      * @param shopId 商家ID
      * @return 是否成功
      */
@@ -184,6 +198,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 增加销量
+     *
      * @param shopId 商家ID
      * @param increment 增加的数量
      * @return 是否成功
@@ -198,6 +213,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 删除商家
+     *
      * @param shopId 商家ID
      * @return 是否成功
      */
@@ -208,6 +224,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 批量删除商家
+     *
      * @param shopIds 商家ID列表
      * @return 是否成功
      */
@@ -218,6 +235,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 统计分类下的商家数量
+     *
      * @param categoryId 分类ID
      * @return 数量
      */
@@ -227,6 +245,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 统计营业中的商家数量
+     *
      * @return 数量
      */
     public long countBusinessShops() {
@@ -235,6 +254,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 统计已认证的商家数量
+     *
      * @return 数量
      */
     public long countAuthShops() {
@@ -243,6 +263,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 统计总商家数量
+     *
      * @return 数量
      */
     public long countTotal() {
@@ -251,6 +272,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 查询评分最高的商家
+     *
      * @param limit 限制数量
      * @return 商家列表
      */
@@ -260,6 +282,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 查询销量最高的商家
+     *
      * @param limit 限制数量
      * @return 商家列表
      */
@@ -269,6 +292,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 分页查询商家
+     *
      * @param pageNum 页码
      * @param pageSize 每页数量
      * @return 分页结果
@@ -282,6 +306,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 分页查询营业中的商家
+     *
      * @param pageNum 页码
      * @param pageSize 每页数量
      * @return 分页结果
@@ -296,6 +321,7 @@ public class ShopService extends ServiceImpl<ShopMapper, Shop> {
 
     /**
      * 分页查询指定分类的商家
+     *
      * @param categoryId 分类ID
      * @param pageNum 页码
      * @param pageSize 每页数量

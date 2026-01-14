@@ -185,11 +185,11 @@ public class ShopController {
     @PostMapping
     public ResponseEntity<?> addShop(@RequestBody Shop shop) {
         // 验证必填字段
-        if (shop.getShop_name() == null || shop.getShop_name().isEmpty()) {
+        if (shop.getShopName() == null || shop.getShopName().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("message", "商家名称不能为空"));
         }
-        if (shop.getCategory_id() == null) {
+        if (shop.getCategoryId() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("message", "分类不能为空"));
         }
@@ -220,7 +220,7 @@ public class ShopController {
                     .body(Map.of("message", "商家不存在"));
         }
         
-        shop.setShop_id(id);
+        shop.setShopId(id);
         boolean success = shopService.updateShop(shop);
         if (success) {
             return ResponseEntity.ok(shop);

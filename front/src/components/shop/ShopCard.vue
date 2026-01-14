@@ -5,8 +5,8 @@
     </div>
     <div class="shop-card-content">
       <div class="shop-card-header">
-        <span class="shop-name">{{ shop.name }}</span>
-        <el-tag v-if="shop.isAuthenticated === 1" size="small" type="success"
+        <span class="shop-name">{{ shop.shop_name }}</span>
+        <el-tag v-if="shop.is_auth === 1" size="small" type="success"
           >认证</el-tag
         >
       </div>
@@ -15,16 +15,16 @@
           <el-icon><Star /></el-icon>
           {{ shop.rating?.toFixed(1) || "5.0" }}
         </span>
-        <span class="sales">月售{{ shop.monthlySales || 0 }}</span>
-        <span class="delivery-time">{{ shop.deliveryTime || 30 }}分钟</span>
+        <span class="sales">月售{{ shop.sales_count || 0 }}</span>
+        <span class="delivery-time">{{ shop.delivery_time || 30 }}分钟</span>
       </div>
       <div class="shop-card-tags">
-        <span class="min-price">¥{{ shop.minPrice || 0 }}起送</span>
-        <span class="delivery-fee">配送费¥{{ shop.deliveryFee || 0 }}</span>
+        <span class="min-price">¥{{ shop.min_order_amount || 0 }}起送</span>
+        <span class="delivery-fee">配送费¥{{ shop.delivery_fee || 0 }}</span>
       </div>
-      <div v-if="shop.notice" class="shop-card-notice">
+      <div v-if="shop.description" class="shop-card-notice">
         <el-icon><BellFilled /></el-icon>
-        <span>{{ shop.notice }}</span>
+        <span>{{ shop.description }}</span>
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@ const defaultLogo =
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5IiBmb250LXNpemU9IjE0Ij7llYblrrY8L3RleHQ+PC9zdmc+";
 
 const handleClick = () => {
-  router.push(`/shop/${props.shop.id}`);
+  router.push(`/shop/${props.shop.shop_id}`);
 };
 </script>
 

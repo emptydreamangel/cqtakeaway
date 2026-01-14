@@ -81,14 +81,14 @@ public class ShopCategoryService extends ServiceImpl<ShopCategoryMapper, ShopCat
      */
     public boolean addCategory(ShopCategory category) {
         // 检查名称是否已存在
-        if (isNameExist(category.getCategory_name())) {
+        if (isNameExist(category.getCategoryName())) {
             return false;
         }
         
         // 如果没有设置排序，自动设置为最大值+1
-        if (category.getSort_order() == null) {
+        if (category.getSortOrder() == null) {
             Integer maxSort = this.baseMapper.getMaxSortOrder();
-            category.setSort_order(maxSort + 1);
+            category.setSortOrder(maxSort + 1);
         }
         
         // 如果没有设置状态，默认为启用
@@ -105,13 +105,13 @@ public class ShopCategoryService extends ServiceImpl<ShopCategoryMapper, ShopCat
      * @return 是否成功
      */
     public boolean updateCategory(ShopCategory category) {
-        if (category.getCategory_id() == null) {
+        if (category.getCategoryId() == null) {
             return false;
         }
         
         // 检查名称是否与其他分类重复
-        if (category.getCategory_name() != null && 
-            isNameExistExcludeId(category.getCategory_name(), category.getCategory_id())) {
+        if (category.getCategoryName() != null && 
+            isNameExistExcludeId(category.getCategoryName(), category.getCategoryId())) {
             return false;
         }
         
@@ -214,7 +214,7 @@ public class ShopCategoryService extends ServiceImpl<ShopCategoryMapper, ShopCat
     public int batchUpdateSortOrder(List<ShopCategory> categories) {
         int count = 0;
         for (ShopCategory category : categories) {
-            if (updateSortOrder(category.getCategory_id(), category.getSort_order())) {
+            if (updateSortOrder(category.getCategoryId(), category.getSortOrder())) {
                 count++;
             }
         }

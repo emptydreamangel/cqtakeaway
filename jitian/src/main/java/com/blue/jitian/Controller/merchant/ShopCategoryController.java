@@ -91,7 +91,7 @@ public class ShopCategoryController {
     @PostMapping
     public ResponseEntity<?> addCategory(@RequestBody ShopCategory category) {
         // 验证必填字段
-        if (category.getCategory_name() == null || category.getCategory_name().isEmpty()) {
+        if (category.getCategoryName() == null || category.getCategoryName().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("message", "分类名称不能为空"));
         }
@@ -119,7 +119,7 @@ public class ShopCategoryController {
                     .body(Map.of("message", "分类不存在"));
         }
         
-        category.setCategory_id(id);
+        category.setCategoryId(id);
         boolean success = categoryService.updateCategory(category);
         if (success) {
             return ResponseEntity.ok(category);
