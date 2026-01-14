@@ -1,0 +1,213 @@
+// 全局样式
+
+// 变量
+$primary-color: #ff6b00;
+$primary-color-light: #ff8533;
+$text-color: #333;
+$text-color-secondary: #666;
+$text-color-placeholder: #999;
+$border-color: #eee;
+$background-color: #f5f5f5;
+
+// 重置样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 14px;
+  line-height: 1.5;
+  color: $text-color;
+  background-color: $background-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: #999;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+// 链接样式
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary-color-light;
+  }
+}
+
+// 图片
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+// 列表
+ul,
+ol {
+  list-style: none;
+}
+
+// Element Plus 主题覆盖
+.el-button--primary {
+  --el-button-bg-color: #{$primary-color};
+  --el-button-border-color: #{$primary-color};
+  --el-button-hover-bg-color: #{$primary-color-light};
+  --el-button-hover-border-color: #{$primary-color-light};
+  --el-button-active-bg-color: #{$primary-color};
+  --el-button-active-border-color: #{$primary-color};
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: $primary-color;
+}
+
+.el-tabs__item.is-active {
+  color: $primary-color;
+}
+
+.el-tabs__active-bar {
+  background-color: $primary-color;
+}
+
+.el-switch.is-checked .el-switch__core {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+// 响应式断点
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+// 移动端优化
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .el-dialog {
+    --el-dialog-width: 90% !important;
+    margin: 0 auto !important;
+  }
+
+  .el-message-box {
+    width: 90% !important;
+  }
+}
+
+// PC端优化 - 限制最大宽度
+@media (min-width: 768px) {
+  #app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+  }
+
+  .tabbar {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .cart-bar,
+  .submit-bar,
+  .cart-footer,
+  .pay-footer,
+  .add-btn,
+  .form-footer,
+  .order-actions {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// 工具类
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary {
+  color: $primary-color;
+}
+
+.text-secondary {
+  color: $text-color-secondary;
+}
+
+.text-placeholder {
+  color: $text-color-placeholder;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// 安全区域适配（iPhone X 等）
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .tabbar,
+  .cart-bar,
+  .submit-bar,
+  .cart-footer,
+  .pay-footer,
+  .add-btn,
+  .form-footer,
+  .order-actions {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+}
