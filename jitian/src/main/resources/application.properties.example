@@ -1,6 +1,7 @@
 spring.application.name=jitian
 
 # Database Configuration
+# 请根据实际情况修改数据库连接信息
 spring.datasource.url=jdbc:postgresql://localhost:5432/jitian
 spring.datasource.username=your_username
 spring.datasource.password=your_password
@@ -15,6 +16,7 @@ mybatis-plus.mapper-locations=classpath*:/mapper/**/*.xml
 mybatis-plus.type-aliases-package=com.blue.jitian.Entity
 
 # Spring Security (Temporary disable for development)
+# 请修改默认的用户名和密码
 spring.security.user.name=admin
 spring.security.user.password=change_me
 
