@@ -5,6 +5,7 @@
 ## 技术栈
 
 ### 前端 (front/)
+
 - **框架**: Vue 3 + TypeScript
 - **构建工具**: Vite 5
 - **UI 组件库**: Element Plus
@@ -14,6 +15,7 @@
 - **CSS 预处理器**: Sass
 
 ### 后端 (jitian/)
+
 - **框架**: Spring Boot 3.2.1
 - **语言**: Java 21
 - **ORM**: MyBatis-Plus
@@ -67,11 +69,13 @@ cqtakeaway/
 ### 数据库配置
 
 1. 创建 PostgreSQL 数据库：
+
 ```sql
 CREATE DATABASE jitian;
 ```
 
 2. 修改后端配置文件 `jitian/src/main/resources/application.properties`：
+
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/jitian
 spring.datasource.username=your_username
@@ -99,20 +103,20 @@ npm run dev
 
 ## API 文档
 
-详细的 API 接口文档请参考 [API接口文档.md](./API接口文档.md)
+详细的 API 接口文档请参考 [API 接口文档.md](./API接口文档.md)
 
 ## 主要页面
 
-| 页面 | 路由 | 描述 |
-|------|------|------|
-| 首页 | /home | 商家分类和推荐商家列表 |
-| 登录 | /login | 用户登录 |
-| 注册 | /register | 用户注册 |
-| 商家详情 | /shop/:id | 商家信息和商品列表 |
-| 购物车 | /cart | 购物车商品管理 |
-| 订单列表 | /orders | 用户订单列表 |
-| 地址管理 | /address | 收货地址管理 |
-| 个人中心 | /user | 用户个人信息 |
+| 页面     | 路由      | 描述                   |
+| -------- | --------- | ---------------------- |
+| 首页     | /home     | 商家分类和推荐商家列表 |
+| 登录     | /login    | 用户登录               |
+| 注册     | /register | 用户注册               |
+| 商家详情 | /shop/:id | 商家信息和商品列表     |
+| 购物车   | /cart     | 购物车商品管理         |
+| 订单列表 | /orders   | 用户订单列表           |
+| 地址管理 | /address  | 收货地址管理           |
+| 个人中心 | /user     | 用户个人信息           |
 
 ## 开发说明
 
